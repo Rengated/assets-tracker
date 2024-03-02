@@ -1,0 +1,15 @@
+{
+  "coins": [
+    { "symbol": "AVAX", "count": 36.65 },
+    { "symbol": "ATOM", "count": 104.44 },
+    { "symbol": "ADA", "count": 1506 },
+    { "symbol": "MATIC", "count": 1008 },
+    { "symbol": "DOT", "count": 94.02 },
+    { "symbol": "LTC", "count": 8.677 },
+    { "symbol": "DYDX", "count": 175.44 },
+    { "symbol": "APT", "count": 51.3 },
+    { "symbol": "ETC", "count": 13.84 },
+    { "symbol": "DASH", "count": 4 },
+    { "symbol": "TRX", "count": 104 }
+  ]
+}
