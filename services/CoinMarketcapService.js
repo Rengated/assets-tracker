@@ -36,6 +36,14 @@ class CoinMarketCap {
       };
     });
   }
+
+  async getUsdtPrice() {
+    const response = await this.callApi(
+      `cryptocurrency/quotes/latest?convert=RUB&symbol=USDT`
+    );
+
+    return response.data.USDT.quote.RUB.price;
+  }
 }
 
 export default new CoinMarketCap();

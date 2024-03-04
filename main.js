@@ -1,1 +1,1 @@
-import { Bot } from "./services/tg.js";
+import { Bot } from "./services/TgService.js";

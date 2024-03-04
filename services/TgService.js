@@ -1,14 +1,38 @@
 import "dotenv/config";
 import TelegramBot from "node-telegram-bot-api";
-import Spot from "./coinmarketcap.js";
-import Bybit from "./bybit.js";
+import Spot from "./CoinMarketcapService.js";
+import Bybit from "./BybitService.js";
 
 export const Bot = new TelegramBot(process.env.BOT_API_KEY, {
   polling: true,
 });
 
+const commands = [
+  {
+    command: "/stats",
+    description: "Получить статистику по аккаунту",
+  },
+  {
+    command: "/opened_positions",
+    description: "Получить открытые позиции",
+  },
+  {
+    command: "/help",
+    description: "Раздел помощи",
+  },
+];
+
+Bot.setMyCommands(commands);
+
 Bot.on("text", async (message) => {
-  if (message.text == "/stats" && message.chat.id == "441931183") {
+  if (message.chat.id != "441931183") {
+    Bot.sendMessage(message.chat.id, "Not Authorized", {
+      reply_markup: { keyboard: [] },
+    });
+    return;
+  }
+
+  if (message.text == "/stats") {
     const statsBybit = await Bybit.getAccountStats();
     const messageStatsBybit =
       `-----Bybit------------\n` +
@@ -40,18 +64,31 @@ Bot.on("text", async (message) => {
       2
     )}$`;
 
-    const finalMessage =
+    const rubRate = await Spot.getUsdtPrice();
+
+    const messageResponse =
       messageStatsBybit +
       "\n" +
       messageStatsSpot +
       `\n\n Total Wallet Balance: ${(
         Number(statsBybit.totalBalance) + totalSpotBalance
       ).toFixed(2)}$` +
-      `\n RUB: ${(
+      `\n RUB RATE: ${rubRate.toFixed(2)}р\n PRICE: ${(
         (Number(statsBybit.totalBalance) + totalSpotBalance) *
-        92
+        rubRate
       ).toFixed(2)}р`;
 
-    await Bot.sendMessage(message.chat.id, finalMessage);
+    await Bot.sendMessage(message.chat.id, messageResponse);
+  }
+
+  if (message.text == "/opened_positions") {
+    const positions = await Bybit.getPositions();
+    const messageResponse = positions
+      .map(
+        (pos) =>
+          `📌${pos.symbol} x${pos.leverage} \n💵pnl: ${pos.unrealisedPnl}$ \n ✖  in: ${pos.avgPrice}$  \n ✖  market: ${pos.markPrice}$ \n`
+      )
+      .join("\n");
+    Bot.sendMessage(message.chat.id, messageResponse, {});
   }
 });

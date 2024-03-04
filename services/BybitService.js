@@ -9,20 +9,28 @@ class Bybit {
     });
   }
 
-  async getUnrealisedPnl() {
+  async getPositions() {
     const response = await this.client.getPositionInfo({
       category: "linear",
       settleCoin: "USDT",
-    }).result.list;
+    });
+
+    const positions = response.result.list.map((pos) => ({
+      symbol: pos.symbol,
+      leverage: pos.leverage,
+      unrealisedPnl: pos.unrealisedPnl,
+      markPrice: pos.markPrice,
+      avgPrice: pos.avgPrice,
+    }));
+
+    return positions;
   }
 
   async getAccountStats() {
     const response = await this.client.getWalletBalance({
       accountType: "UNIFIED",
     });
-
     const stats = response.result.list[0];
-
     return {
       totalBalance: stats.totalEquity,
       accountPnl: stats.totalPerpUPL,
