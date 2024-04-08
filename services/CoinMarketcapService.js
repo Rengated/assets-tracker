@@ -22,6 +22,7 @@ class CoinMarketCap {
     const response = await this.callApi(
       `cryptocurrency/quotes/latest?convert=USDT&symbol=${query}`
     );
+
     const parseData = Object.entries(response.data).map((item) => ({
       symbol: item[1].symbol,
       Price: item[1].quote.USDT.price,

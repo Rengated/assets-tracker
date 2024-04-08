@@ -6,6 +6,7 @@ class Bybit {
       key: process.env.BYBIT_API_KEY,
       secret: process.env.BYBIT_API_KEY_SECRET,
       testnet: false,
+      enable_time_sync: true,
     });
   }
 

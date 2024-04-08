@@ -1,15 +1,21 @@
 {
   "coins": [
-    { "symbol": "AVAX", "count": 36.65 },
-    { "symbol": "ATOM", "count": 104.44 },
-    { "symbol": "ADA", "count": 1506 },
+    { "symbol": "ONT", "count": 1563 },
+    { "symbol": "ETC", "count": 23.08 },
+    { "symbol": "STRK", "count": 176 },
+    { "symbol": "ARKM", "count": 126.6 },
+    { "symbol": "ATOM", "count": 126 },
+    { "symbol": "DOT", "count": 92.2 },
+    { "symbol": "ADA", "count": 1507 },
     { "symbol": "MATIC", "count": 1008 },
-    { "symbol": "DOT", "count": 94.02 },
-    { "symbol": "LTC", "count": 8.677 },
-    { "symbol": "DYDX", "count": 175.44 },
+    { "symbol": "ETH", "count": 0.23076033 },
+    { "symbol": "AVAX", "count": 4.7 },
+    { "symbol": "LTC", "count": 7.67723508 },
     { "symbol": "APT", "count": 51.3 },
-    { "symbol": "ETC", "count": 13.84 },
-    { "symbol": "DASH", "count": 4 },
-    { "symbol": "TRX", "count": 104 }
+    { "symbol": "DYDX", "count": 175.447522 },
+    { "symbol": "SAND", "count": 448.86069 },
+    { "symbol": "DASH", "count": 11.78 },
+    { "symbol": "OP", "count": 81.10881 },
+    { "symbol": "USDT", "count": -2000 }
   ]
 }

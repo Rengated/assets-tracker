@@ -25,7 +25,7 @@ const commands = [
 Bot.setMyCommands(commands);
 
 Bot.on("text", async (message) => {
-  if (message.chat.id != "441931183") {
+  if (message.chat.id != process.env.ADMIN_ID) {
     Bot.sendMessage(message.chat.id, "Not Authorized", {
       reply_markup: { keyboard: [] },
     });
